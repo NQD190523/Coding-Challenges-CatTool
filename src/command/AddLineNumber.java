@@ -1,26 +1,29 @@
 package command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddLineNumber {
 
-    public static void addLineNumber(List<String> lines, String option, int lineNumber){
+    public static List<String> addLineNumber(List<String> lines, String option, int lineNumber){
+        List<String> newLines = new ArrayList<String>();
         if(option.equals("n")){
-            int currentLine = 1;
-            while (currentLine <=  lineNumber ){
-                for ( String line : lines ){
-                    System.out.println(currentLine +". " + line);
-                    currentLine++;
+            for( int i = 1; i <= lineNumber; i++){
+                if(!lines.get(i-1).isEmpty()){
+                    newLines.add(i + ". " + lines.get(i-1));
                 }
             }
         } else if(option.equals("b")){
-            int currentLine = 1;
-            while (currentLine <=  lineNumber ){
-                for ( String line : lines){
-                    System.out.println("/n"+currentLine +". " + line);
-                    currentLine++;
+            int currentLineNumber = 1;
+            for( int i = 0; i < lineNumber; i++){
+                if(!lines.get(i).isEmpty() && !lines.get(i).startsWith(" ")){
+                    newLines.add(currentLineNumber + ". " + lines.get(i));
+                    currentLineNumber++;
+                } else {
+                    newLines.add(lines.get(i));
                 }
             }
         }
+        return newLines;
     }
 }

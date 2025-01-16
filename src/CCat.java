@@ -14,8 +14,8 @@ public class CCat {
 
         List<String> lines = new ArrayList<>();
 
-        if(args.length == 0){
-            ReadFromStdin.readFromStdin();
+        if(!args[0].contains(".txt")){
+            lines = ReadFromStdin.readFromStdin();
         } else {
             if(args[0].contains("-")){
                 List<String> requests = new ArrayList<>();
